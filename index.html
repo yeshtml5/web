@@ -1,16 +1,22 @@
 <html>
   <body>
-    <h1>github.io1</h1>
-    <button id="openApp">앱 열기</button> <!-- 버튼 추가 -->
+    <h1>github.io</h1>
+    <button id="openApp" style="padding:20px;font-size:14px;">앱 열기</button>
 
     <script>
       document.getElementById("openApp").addEventListener("click", function () {
         const appUrl = "crocus://aceloev.com";
-        const playStoreUrl =
-          "https://play.google.com/store/apps/details?id=com.crocusev.aceloev";
+        let storeUrl;
+
+        // iOS와 Android 플랫폼 감지
+        if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+          storeUrl = "https://apps.apple.com/us/app/crocusev/id123456789"; // iOS 앱스토어 URL
+        } else if (/Android/i.test(navigator.userAgent)) {
+          storeUrl = "https://play.google.com/store/apps/details?id=com.crocusev.aceloev"; // Android Play스토어 URL
+        }
 
         const timeout = setTimeout(function () {
-          window.location.href = playStoreUrl;
+          window.location.href = storeUrl;
         }, 100);
 
         const iframe = document.createElement("iframe");
