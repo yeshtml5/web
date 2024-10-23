@@ -1,3 +1,28 @@
 <html>
+    <script>
+      document.getElementById("openApp").addEventListener("click", function () {
+        // 앱 링크
+        const appUrl = "crocus://aceloev.com";
+        // 앱이 설치되어 있지 않을 경우 리디렉션할 Play Store URL
+        const playStoreUrl =
+          "https://play.google.com/store/apps/details?id=com.crocusev.aceloev";
+
+        // 100ms 후에 Play Store URL로 리디렉션
+        const timeout = setTimeout(function () {
+          window.location.href = playStoreUrl;
+        }, 100);
+
+        // iframe을 사용하여 앱 URL을 시도
+        const iframe = document.createElement("iframe");
+        iframe.style.display = "none";
+        iframe.src = appUrl;
+        document.body.appendChild(iframe);
+
+        // 페이지 이동 중지
+        window.onblur = function () {
+          clearTimeout(timeout);
+        };
+      });
+    </script>
   <h1> github.io</h1>
 </html>
